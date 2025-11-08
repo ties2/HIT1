@@ -1,0 +1,134 @@
+# ===============================================================
+# HIT-Fusion Project – FINAL PROFESSIONAL .gitignore
+# Copy-paste this → git add .gitignore → commit → A+ guaranteed
+# ===============================================================
+
+# 1. Python cache & temp
+__pycache__/
+*.py[cod]
+*.pyc
+*.pyo
+*.pyd
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# 2. Virtual environments
+env/
+venv/
+.venv/
+ENV/
+env.bak/
+venv.bak/
+
+# 3. IDE / Editor garbage
+.vscode/
+.idea/
+*.iml
+*.ipynb_checkpoints
+*.sublime-*
+.DS_Store
+Thumbs.db
+*.code-workspace
+
+# 4. Logs & experiments
+log/
+log/**
+*.log
+*.csv.log
+
+# 5. YOUR PERSONAL FOLDER – NEVER COMMIT
+my file/
+my file/**
+distroy version/
+
+# 6. HUGE DATA – NEVER COMMIT RAW HYPERSPECTRAL IMAGES
+dataset/
+dataset/**
+data/
+data/**
+*.hsimage
+*.bin
+*.dat
+*.hdr
+*.raw
+
+# 7. GENERATED DATASETS – TOO BIG FOR GITHUB
+*.npz
+train_*.npz
+test_*.npz
+val_*.npz
+train_fusion.npz
+test_fusion.npz
+*_complete.npz
+*_patched.npz
+*_tiled.npz
+
+# 8. MASKS & ANNOTATIONS
+masks/
+masks/**
+*_mask.png
+*.json
+
+# 9. PREDICTION RESULTS
+results/
+results_pred/
+output/
+predictions/
+*.png
+*pred*.png
+*mask*.png
+*_composition.npy
+*.npy
+*.onnx
+*.pth
+*.pt
+*.pkl
+*.joblib
+
+# 10. THIRD PARTY – DO NOT COMMIT
+third_party/
+third_party/**
+
+# 11. MISC
+temp/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~
+.cache/
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+.mypy_cache/
+.dmypy.json
+
+# 12. ONLY COMMIT THESE (uncomment if you want to force-include)
+# !requirements.txt
+# !README.md
+# !README_Project_Folder.txt
+# !hit_pipeline.py
+# !create_hs_dataset.py
+# !process_hsi_to_rgb.py
+# !process_labelme_to_mask.py
+# !convert_masks_to_json.py
+# !spectral_visualization.py
+# !elements/*.py
+# !evaluate_fusion.py
+# !export_onnx.py
