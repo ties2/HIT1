@@ -51,9 +51,10 @@ import time
 import torch
 import warnings
 # from torch.cuda.amp import GradScaler, autocast
-from torch.utils.data import DataLoader
+from torch.utils.data import DataLoader,random_split
 from torch.amp import GradScaler, autocast
 from elements.common.model.torch_models.ganomaly import weights_init
+
 
 
 # working dir
@@ -231,8 +232,20 @@ def run_pipeline(config):
         logger.info("Starting training pipeline ...")
 
         dataset = load_hsi_dataset(dataset_path=os.path.join(_get_working_dir(), 'dataset', config.train_dataset_name))
-        train_dataset, val_dataset = stratified_split_by_composition(dataset=dataset,train_ratio=config.train_ratio,
-            model_type=config.model_type,check_stratification=config.check_stratification)
+        #old method
+        # train_dataset, val_dataset = stratified_split_by_composition(dataset=dataset,train_ratio=config.train_ratio,
+        #     model_type=config.model_type,check_stratification=config.check_stratification)
+
+        #update by me
+        train_size = int(config.train_ratio * len(dataset))
+        val_size = len(dataset) - train_size
+        train_dataset, val_dataset = random_split(
+            dataset,
+            [train_size, val_size],
+            generator=torch.Generator().manual_seed(42)  # for reproducibility
+        )
+
+
         train_loader = DataLoader(train_dataset, batch_size=config.batch_size, shuffle=True, num_workers=config.num_workers, pin_memory=config.pin_memory)
         val_loader = DataLoader(val_dataset, batch_size=config.batch_size, shuffle=False, num_workers=config.num_workers, pin_memory=config.pin_memory)
 
